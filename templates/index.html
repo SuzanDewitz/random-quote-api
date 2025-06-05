@@ -1,56 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Random Quote</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 2rem;
-            background: #f0f0f0;
-            text-align: center;
-        }
-        #quote {
-            font-size: 1.5rem;
-            margin: 2rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            border-radius: 6px;
-            background-color: #007bff;
-            color: white;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Random Quote Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .quote-box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #ffffff;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ccc;
+    }
+  </style>
 </head>
 <body>
+  <div id="particles-js"></div>
 
-    <h1>Random Quote Generator</h1>
-    <div id="quote">Click the button to get a quote!</div>
-    <button id="new-quote">New Quote</button>
+  <div class="quote-box">
+    <h1 id="quote">Click the button to see a quote</h1>
+    <button onclick="loadQuote()">New Quote</button>
+  </div>
 
-    <script>
-        async function fetchQuote() {
-            try {
-                const response = await fetch('/api/quote');
-                const data = await response.json();
-                document.getElementById('quote').textContent = data.quote;
-            } catch (err) {
-                document.getElementById('quote').textContent = 'Failed to fetch quote.';
-                console.error(err);
-            }
-        }
-
-        document.getElementById('new-quote').addEventListener('click', fetchQuote);
-    </script>
+  <script src="/static/scripts.js"></script>
 </body>
 </html>
